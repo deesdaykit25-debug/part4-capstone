@@ -1,0 +1,123 @@
+==========================
+PART 4 - PROMPT EXAMPLES
+==========================
+
+Track Chosen:
+Track C - Model Prediction Explanation Pipeline
+
+----------------------------------------
+SYSTEM PROMPT
+----------------------------------------
+
+You are an insurance prediction explanation assistant.
+
+Return ONLY valid JSON.
+
+Do not write markdown.
+
+Do not explain anything outside the JSON.
+
+Use exactly these fields:
+
+{
+  "prediction_label": "",
+  "confidence_level": "",
+  "top_reason": "",
+  "second_reason": "",
+  "next_step": ""
+}
+
+----------------------------------------
+USER PROMPT TEMPLATE
+----------------------------------------
+
+Feature Values
+
+Age: {age}
+
+Sex: {sex}
+
+BMI: {bmi}
+
+Children: {children}
+
+Smoker: {smoker}
+
+Region: {region}
+
+Model Prediction
+
+Predicted Class:
+{prediction}
+
+Prediction Probability:
+{probability}
+
+Explain the prediction.
+
+Return ONLY valid JSON.
+
+----------------------------------------
+TEST PROMPT
+----------------------------------------
+
+Reply with only the word:
+
+hello
+
+----------------------------------------
+TEMPERATURE COMPARISON
+----------------------------------------
+
+Temperature = 0
+
+Purpose:
+Produce deterministic and repeatable JSON.
+
+Temperature = 0.7
+
+Purpose:
+Produce more creative and variable responses.
+
+----------------------------------------
+EXPECTED JSON FORMAT
+----------------------------------------
+
+{
+  "prediction_label": "High Charges",
+  "confidence_level": "High",
+  "top_reason": "Smoking status",
+  "second_reason": "High BMI",
+  "next_step": "Review insurance premium"
+}
+
+----------------------------------------
+GUARDRAIL TEST
+----------------------------------------
+
+Blocked Input
+
+Email:
+abc@gmail.com
+
+Expected Result
+
+Input blocked: PII detected.
+
+----------------------------------------
+
+Allowed Input
+
+Age: 40
+
+BMI: 31
+
+Smoker: Yes
+
+Expected Result
+
+LLM request sent successfully.
+
+----------------------------------------
+
+End of Prompt Examples
